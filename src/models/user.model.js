@@ -22,5 +22,5 @@ DataSchema.pre("save", function (next) {
   next();
 });
 
-const users = mongoose.model("User", DataSchema);
-module.exports = users;
+const user = mongoose.model("User", DataSchema);
+module.exports = user;
