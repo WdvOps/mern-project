@@ -6,13 +6,8 @@ module.exports = {
     res.json(user);
   },
   async create(req, res) {
-    const {
-      user_name,
-      user_email,
-      user_phone_number,
-      user_password,
-      user_address,
-    } = req.body;
+    const { user_name, user_email, user_phone_number, user_password } =
+      req.body;
 
     let data = {};
 
@@ -23,7 +18,6 @@ module.exports = {
         user_email,
         user_phone_number,
         user_password,
-        user_address,
       };
       user = await User.create(data);
 
@@ -47,21 +41,14 @@ module.exports = {
   },
 
   async update(req, res) {
-    const {
-      _id,
-      user_name,
-      user_email,
-      user_phone_number,
-      user_password,
-      user_address,
-    } = req.body;
+    const { _id, user_name, user_email, user_phone_number, user_password } =
+      req.body;
 
     const data = {
       user_name,
       user_email,
       user_phone_number,
       user_password,
-      user_address,
     };
 
     const user = await User.findOneAndUpdate({ _id }, data, { new: true });
