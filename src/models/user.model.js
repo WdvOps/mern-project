@@ -21,6 +21,13 @@ DataSchema.pre("save", function (next) {
   this.user_password = bcrypt.hashSync(this.user_password, 11);
   next();
 });
+DataSchema.pre("findOneAndUpdate", function (next) {
+  let password = this.getUpdate().user_password + "";
+  if (password.length < 55) {
+    this.getUpdate().user_password = bcrypt.hashSync(password, 11);
+  }
+  next();
+});
 
 const user = mongoose.model("User", DataSchema);
 module.exports = user;

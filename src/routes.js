@@ -11,5 +11,6 @@ routes.post("/api/user", User.create);
 routes.get("/api/user", User.index);
 routes.get("/api/user.details/:_id", User.details);
 routes.delete("/api/user/:_id", User.delete);
+routes.put("/api/user", User.update);
 
 module.exports = routes;
