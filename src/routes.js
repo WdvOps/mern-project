@@ -3,7 +3,7 @@ const express = require("express");
 const routes = express.Router();
 
 const User = require("./controllers/users.controller");
-const Visit = require("./controllers/visits.controller");
+const Product = require("./controllers/products.controller");
 
 routes.get("/", User.index);
 
@@ -14,11 +14,11 @@ routes.get("/api/user.details/:_id", User.details);
 routes.delete("/api/user/:_id", User.delete);
 routes.put("/api/user", User.update);
 
-//Visit routes
-routes.post("/api/visit", Visit.create);
-routes.get("/api/visit", Visit.index);
-routes.get("/api/visit.details/:_id", Visit.details);
-routes.delete("/api/visit/:_id", Visit.delete);
-routes.put("/api/visit", Visit.update);
+//product routes
+routes.post("/api/product", Product.create);
+routes.get("/api/product", Product.index);
+routes.get("/api/product.details/:_id", Product.details);
+routes.delete("/api/product/:_id", Product.delete);
+routes.put("/api/product", Product.update);
 
 module.exports = routes;
