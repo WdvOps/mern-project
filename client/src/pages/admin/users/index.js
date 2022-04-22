@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function UsersList() {
+export default function Users() {
   return (
     <div>
       <h1>Lista de Usuários</h1>

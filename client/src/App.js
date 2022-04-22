@@ -1,15 +1,13 @@
 import React from "react";
 import "./App.css";
 
-import Initial from "./pages/client/panel";
+// import Initial from "./pages/client/panel";
+import Routers from "./routes";
 
 function App() {
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <h1>NODEJS AND REACTJS</h1>
-      </header> */}
-      <Initial />
+      <Routers />
     </div>
   );
 }
