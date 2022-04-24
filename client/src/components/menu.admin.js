@@ -12,6 +12,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import Typography from "@mui/material/Typography";
 
 import MenuIcon from "@mui/icons-material/Menu";
+import { CssBaseline } from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -59,7 +60,7 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-function MenuAdmin() {
+function MenuAdmin({ title }) {
   // const classes = useStyles()
   const [open, setOpen] = React.useState(true);
   function toggleDrawer() {
@@ -67,6 +68,7 @@ function MenuAdmin() {
   }
   return (
     <>
+      <CssBaseline />
       <AppBar position="absolute" open={open}>
         <Toolbar
           sx={{
@@ -92,7 +94,7 @@ function MenuAdmin() {
             noWrap
             sx={{ flexGrow: 1 }}
           >
-            Dashboard
+            {title}
           </Typography>
         </Toolbar>
       </AppBar>
