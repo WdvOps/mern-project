@@ -7,6 +7,8 @@ const DataSchema = new mongoose.Schema(
     user_email: String,
     user_phone_number: { type: Number },
     user_password: String,
+    password_confirm: String,
+    user_type: String,
   },
   {
     timestamps: true,
