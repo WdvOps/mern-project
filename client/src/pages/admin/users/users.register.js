@@ -27,12 +27,6 @@ function UserRegisterContent() {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [typeUser, setTypeUser] = useState("");
 
-  const [open, setOpen] = React.useState(true);
-  // eslint-disable-next-line no-unused-vars
-  const toggleDrawer = () => {
-    setOpen(!open);
-  };
-
   async function handleSubmit() {
     const data = {
       user_name: name,
@@ -63,6 +57,8 @@ function UserRegisterContent() {
         alert("Erro ao cadastrar usuário");
         console.log(response.status);
       }
+    } else {
+      alert("Por favor, preencha todos os campos!");
     }
   }
 
@@ -159,9 +155,9 @@ function UserRegisterContent() {
                       <TextField
                         type="password"
                         required
-                        id="senha"
-                        name="senha"
-                        label="Senha"
+                        id="confirm_password"
+                        name="confirmSenha"
+                        label="Confirme a Senha"
                         fullWidth
                         autoComplete="senha"
                         value={passwordConfirm}

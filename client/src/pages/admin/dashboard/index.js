@@ -7,7 +7,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
-import BakcGroundImg from "../../../assets/image/vector.jpg";
+import BakcGroundImg from "../../../assets/image/dashboardAdmin.png";
 
 import MenuAdmin from "../../../components/menu.admin";
 import Footer from "../../../components/footer-admin";
@@ -40,11 +40,11 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ ml: 50, mt: 12, mb: 4 }}>
-            <Grid container spacing={2}>
+          <Container maxWidth="lg" sx={{ mt: 11, mb: 4 }}>
+            <Grid container spacing={3}>
               <img src={BakcGroundImg} alt="logo" />
             </Grid>
-            <Footer sx={{ mr: 70, mt: 6, pt: 4 }} />
+            <Footer sx={{ mt: 2, pt: 4 }} />
           </Container>
         </Box>
       </Box>

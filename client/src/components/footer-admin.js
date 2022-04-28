@@ -18,7 +18,7 @@ export default function Copyright(props) {
         target="_blank"
         rel="nofollow, noreferrer, noopener"
       >
-        e-W°ll Technologies
+        BWM Technologies - e-W°ll
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
