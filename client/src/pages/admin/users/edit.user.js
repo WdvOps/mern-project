@@ -42,7 +42,7 @@ function UserUpdateContent() {
     }
 
     getUser();
-  }, []);
+  }, [idUser]);
 
   async function handleSubmit() {
     const data = {

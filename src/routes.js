@@ -13,6 +13,7 @@ routes.get("/api/user", User.index);
 routes.get("/api/user.details/:_id", User.details);
 routes.delete("/api/user/:_id", User.delete);
 routes.put("/api/user", User.update);
+routes.post("/api/user/login", User.login);
 
 //product routes
 routes.post("/api/product", Product.create);
