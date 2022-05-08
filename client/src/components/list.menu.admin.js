@@ -7,6 +7,8 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PeopleIcon from "@mui/icons-material/People";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import api from "../services/api";
+import { getToken, logout } from "../services/auth";
 
 export const mainListItems = (
   <React.Fragment>
@@ -36,7 +38,7 @@ export const secondaryListItems = (
     <ListSubheader component="div" inset>
       Opções
     </ListSubheader>
-    <ListItemButton>
+    <ListItemButton button onClick={confirmExit}>
       <ListItemIcon>
         <ExitToAppIcon />
       </ListItemIcon>
@@ -44,3 +46,19 @@ export const secondaryListItems = (
     </ListItemButton>
   </React.Fragment>
 );
+
+async function confirmExit() {
+  if (window.confirm("Deseja realmente sair?")) {
+    const response = await api.get("/api/user/destroytoken", {
+      headers: {
+        token: getToken(),
+      },
+    });
+    if (response.status === 200) {
+      logout();
+      window.location.href = "/admin/login";
+    } else {
+      alert("Não foi possível fazer o logout!");
+    }
+  }
+}

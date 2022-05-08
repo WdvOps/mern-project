@@ -14,6 +14,8 @@ routes.get("/api/user.details/:_id", User.details);
 routes.delete("/api/user/:_id", User.delete);
 routes.put("/api/user", User.update);
 routes.post("/api/user/login", User.login);
+routes.get("/api/user/checktoken", User.checkToken);
+routes.get("/api/user/destroytoken", User.destroyToken);
 
 //product routes
 routes.post("/api/product", Product.create);
