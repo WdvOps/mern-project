@@ -19,10 +19,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
-import MenuAdmin from "../../../components/menu.admin";
+import MenuAdmin from "../../../components/menu-admin";
 import Footer from "../../../components/footer-admin";
 import api from "../../../services/api";
 import { ButtonGroup } from "@mui/material";
+import { getTypeName } from "../../../functions/static_data";
 
 const mdTheme = createTheme();
 
@@ -126,19 +127,11 @@ function UserListContent() {
                                   {row.user_phone_number}
                                 </TableCell>
                                 <TableCell>
-                                  {row.user_type === 1 ? (
-                                    <Chip
-                                      label="Admin"
-                                      color="primary"
-                                      variant="outlined"
-                                    />
-                                  ) : (
-                                    <Chip
-                                      label="Office"
-                                      color="secondary"
-                                      variant="outlined"
-                                    />
-                                  )}
+                                  <Chip
+                                    label={getTypeName(row.user_type)}
+                                    color="primary"
+                                    variant="outlined"
+                                  />
                                 </TableCell>
                                 <TableCell>
                                   {new Date(row.createdAt).toLocaleString(

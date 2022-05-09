@@ -1,5 +1,5 @@
 import React from "react";
-import { mainListItems, secondaryListItems } from "./list.menu.admin";
+import { mainListItems, secondaryListItems } from "./list-menu-admin";
 import { styled } from "@mui/material/styles";
 import MuiAppBar from "@mui/material/AppBar";
 import MuiDrawer from "@mui/material/Drawer";
@@ -13,6 +13,7 @@ import Typography from "@mui/material/Typography";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import { CssBaseline } from "@mui/material";
+import { USER_NAME } from "../services/auth";
 
 const drawerWidth = 240;
 
@@ -94,8 +95,9 @@ function MenuAdmin({ title }) {
             noWrap
             sx={{ flexGrow: 1 }}
           >
-            {title}
+            {title}            
           </Typography>
+          {localStorage.getItem(USER_NAME)}
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>

@@ -14,7 +14,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SaveIcon from "@mui/icons-material/Save";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
-import MenuAdmin from "../../../components/menu.admin";
+import MenuAdmin from "../../../components/menu-admin";
 import Footer from "../../../components/footer-admin";
 import api from "../../../services/api";
 

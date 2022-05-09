@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+
 
 // import Initial from "./pages/client/panel";
 import Routers from "./routes";

@@ -8,7 +8,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PeopleIcon from "@mui/icons-material/People";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import api from "../services/api";
-import { getToken, logout } from "../services/auth";
+import { getToken,  logout } from "../services/auth";
 
 export const mainListItems = (
   <React.Fragment>

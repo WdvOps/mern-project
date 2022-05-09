@@ -7,12 +7,26 @@ import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
-import BakcGroundImg from "../../../assets/image/dashboardAdmin.png";
+import DashAdmin from "./admin";
+import DashManager from "./manager";
+import DashOfficer from "./officer";
 
-import MenuAdmin from "../../../components/menu.admin";
+import MenuAdmin from "../../../components/menu-admin";
 import Footer from "../../../components/footer-admin";
 
+import { USER_TYPE } from "../../../services/auth";
+
 const mdTheme = createTheme();
+
+function changeDashboard() {
+  if (localStorage.getItem(USER_TYPE) === "1") {
+    return <DashAdmin />;
+  } else if (localStorage.getItem(USER_TYPE) === "2") {
+    return <DashManager />;
+  } else {
+    return <DashOfficer />;
+  }
+}
 
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
@@ -42,7 +56,7 @@ function DashboardContent() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 11, mb: 4 }}>
             <Grid container spacing={3}>
-              <img src={BakcGroundImg} alt="logo" />
+              {changeDashboard()}
             </Grid>
             <Footer sx={{ mt: 2, pt: 4 }} />
           </Container>

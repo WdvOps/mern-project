@@ -29,7 +29,7 @@ export default function Routers() {
         <Route path="/products/:idProduct" exact component={ProductDetails} />
 
         {/*Rota Admin Products*/}
-        <PrivateRoute path="/admin" exact component={Dashboard} />
+        <Route path="/admin" exact component={Dashboard} />
         <PrivateRoute path="/admin/products" exact component={Products} />
         <PrivateRoute
           path="/admin/products/register"

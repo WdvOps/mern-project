@@ -29,6 +29,7 @@ export const setUserType = (type) => {
 };
 export const getUserType = () => {
   localStorage.getItem(USER_TYPE);
+  console.log(getUserType())
 };
 
 export const getToken = () => localStorage.getItem(TOKEN_KEY);

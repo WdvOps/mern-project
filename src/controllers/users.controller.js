@@ -80,8 +80,7 @@ module.exports = {
     const { email, password } = req.body;
     User.findOne(
       {
-        user_email: email,
-        user_type: 1,
+        user_email: email
       },
       function (err, user) {
         if (err) {
@@ -114,6 +113,7 @@ module.exports = {
                 token: token,
                 id_client: user._id,
                 user_name: user.user_name,
+                user_type: user.user_type
               });
             }
           });

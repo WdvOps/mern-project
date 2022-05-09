@@ -3,6 +3,15 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
+import {
+  FormControl,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+} from "@mui/material";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 // import FormControlLabel from "@mui/material/FormControlLabel";
 // import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
@@ -12,6 +21,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import CircularProgress from "@mui/material/CircularProgress";
+
 import api from "../../../services/api";
 import {
   login,
@@ -19,6 +30,7 @@ import {
   setUserType,
   setUserId,
 } from "../../../services/auth";
+
 // import user from "../../../../../src/models/user.model";
 
 function Copyright(props) {
@@ -44,10 +56,12 @@ const theme = createTheme();
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit(event) {
     event.preventDefault();
-
+    setLoading(true);
     await api
       .post("/api/user/login", {
         email,
@@ -61,17 +75,21 @@ export default function SignIn() {
             setUserName(res.data.user_name);
             setUserType(res.data.user_type);
 
-            console.log(res.data.user_type);
-
             window.location.href = "/admin";
             // localstorage
           } else if (res.data.status === 2) {
             alert("Atenção: " + res.data.error);
           }
+          setLoading(false);
         } else {
           alert("Erro no servidor");
+          setLoading(false);
         }
       });
+  }
+  function loadSubmit() {
+    setLoading(true);
+    setTimeout(() => handleSubmit(), 4000);
   }
 
   return (
@@ -110,7 +128,47 @@ export default function SignIn() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <TextField
+            <FormControl
+              variant="outlined"
+              style={{ width: "100%", marginTop: 10 }}
+            >
+              <InputLabel htmlFor="outlined-adornment-password">
+                Senha*
+              </InputLabel>
+              <OutlinedInput
+                required
+                autoComplete="senha"
+                name="password"
+                id="outlined-adornment-password"
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={(e) => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Senha"
+              />
+            </FormControl>
+
+            <Button
+              sx={{ mt: 3, mb: 2 }}
+              fullWidth
+              variant="contained"
+              color="primary"
+              type="submit"
+              onClick={loadSubmit}
+              disabled={loading}
+            >
+              {loading ? <CircularProgress /> : "ENTRAR"}
+            </Button>
+            {/* <TextField
               margin="normal"
               required
               fullWidth
@@ -121,19 +179,19 @@ export default function SignIn() {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-            />
+            /> */}
             {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             /> */}
-            <Button
+            {/* <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
               Entrar
-            </Button>
+            </Button> */}
             {/* <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">

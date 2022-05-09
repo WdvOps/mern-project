@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import api from "./api";
 import { logout, getToken } from "./auth";
 import { Route, Redirect } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
 
 export default function WAuth({ component: Component, ...rest }) {
   const [redirect, setRedirect] = useState(false);
@@ -22,11 +23,14 @@ export default function WAuth({ component: Component, ...rest }) {
         setRedirect(true);
       }
     }
-    verify();
+    // verify();
+    setTimeout(() => verify(), 1000);
   }, []);
 
   return loading ? (
-    "Carregando..."
+    <CircularProgress
+      style={{ margin: "auto", display: "flex", marginTop: "200px" }}
+    />
   ) : (
     <Route
       {...rest}
