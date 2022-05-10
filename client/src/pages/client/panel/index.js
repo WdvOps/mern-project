@@ -41,7 +41,7 @@ export default function Album() {
         <Toolbar>
           <CameraIcon sx={{ mr: 2 }} />
           <Typography variant="h6" color="inherit" noWrap>
-            Album layout
+            Galeria de produtos
           </Typography>
         </Toolbar>
       </AppBar>
@@ -62,7 +62,7 @@ export default function Album() {
               color="text.primary"
               gutterBottom
             >
-              Album layout
+              Nossos Produtos
             </Typography>
             <Typography
               variant="h5"

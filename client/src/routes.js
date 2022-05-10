@@ -16,6 +16,7 @@ import UserRegister from "./pages/admin/users/users.register";
 
 //IMPORT CLIENT
 import Home from "./pages/client/home";
+import Album from "./pages/client/panel";
 import ProductDetails from "./pages/client/products/product.details";
 
 import PrivateRoute from "./services/wAuth";
@@ -26,6 +27,7 @@ export default function Routers() {
       <Switch>
         {/*Rota Cliente*/}
         <Route path="/" exact component={Home} />
+        <Route path="/client/panel" exact component={Album} />
         <Route path="/products/:idProduct" exact component={ProductDetails} />
 
         {/*Rota Admin Products*/}

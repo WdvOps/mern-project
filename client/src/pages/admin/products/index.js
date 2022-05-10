@@ -7,7 +7,8 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+// import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import AddIcon from "@mui/icons-material/Add";
 
 // import Chip from "@mui/material/Chip";
 // import Stack from "@mui/material/Stack";
@@ -18,11 +19,11 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import { ButtonGroup } from "@mui/material";
 
 import MenuAdmin from "../../../components/menu-admin";
 import Footer from "../../../components/footer-admin";
 import api from "../../../services/api";
-import { ButtonGroup } from "@mui/material";
 // import { getTypeName } from "../../../functions/static_data";
 
 const mdTheme = createTheme();
@@ -38,16 +39,32 @@ function ProductListContent() {
 
     loadProduct();
   }, []);
+  useEffect(() => {
+    async function showProduct() {
+      const response = await api.get("/api/product.details/");
+      setProduct(response.data);
+    }
 
+    showProduct();
+  }, []);
   async function handleDelete(id) {
-    if (window.confirm("Deseja realmente excluir este produto?")) {
-      var result = await api.delete("/api/product/" + id);
+    if (window.confirm("Deseja realmente excluir este produto")) {
+      var result = await api.delete("/api/user/" + id);
       if (result.status === 200) {
-        alert("Produto excluido com sucesso!");
-        window.location.href = "/admin/product";
+        alert("Usuário excluido com sucesso!");
+        window.location.href = "/admin/products";
       } else {
         alert("Erro ao excluir o produto, tente novamente.");
       }
+    }
+  }
+
+  async function handleShow(id) {
+    var result = await api.get("/api/product/" + id);
+    if (result.status === 200) {
+      window.location.href = "/products/:idProduct";
+    } else {
+      alert("Erro ao exibir o produto, tente novamente.");
     }
   }
 
@@ -73,12 +90,19 @@ function ProductListContent() {
           <Container maxWidth="lg" sx={{ mt: 8, mb: 6 }}>
             <Grid container spacing={3}>
               <Grid item sm={12}>
+                {/* <Button
+                  style={{ marginBottom: 10 }}
+                  variant="contained"
+                  href={"/admin/products"}
+                >
+                  <ArrowBackIcon sx={{ mr: 1 }} /> Voltar
+                </Button> */}
                 <Button
                   style={{ marginBottom: 10 }}
                   variant="contained"
-                  href={"/admin/product"}
+                  href={"/admin/products/register"}
                 >
-                  <ArrowBackIcon sx={{ mr: 1 }} /> Voltar
+                  <AddIcon sx={{ mr: 1 }} /> Novo
                 </Button>
                 <Paper
                   style={{
@@ -88,7 +112,7 @@ function ProductListContent() {
                     flexDirection: "column",
                   }}
                 >
-                  <h2>Lista de Usuários</h2>
+                  <h2>Lista de Produtos</h2>
                   <Grid container spacing={3}>
                     <Grid item xs={12} sm={12}>
                       <TableContainer component={Paper}>
@@ -149,7 +173,7 @@ function ProductListContent() {
                                   >
                                     <Button
                                       color="primary"
-                                      href={"/admin/Product/edit/" + row._id}
+                                      href={"/admin/products/edit/" + row._id}
                                     >
                                       Atualizar
                                     </Button>
@@ -158,6 +182,13 @@ function ProductListContent() {
                                       onClick={() => handleDelete(row._id)}
                                     >
                                       Excluir
+                                    </Button>
+                                    <Button
+                                      color="secondary"
+                                      onClick={() => handleShow(row._id)}
+                                      href={"/products/:idProduct" + row._id}
+                                    >
+                                      Exibir
                                     </Button>
                                   </ButtonGroup>
                                 </TableCell>
@@ -179,6 +210,6 @@ function ProductListContent() {
   );
 }
 
-export default function ProductRegister() {
+export default function Products() {
   return <ProductListContent />;
 }

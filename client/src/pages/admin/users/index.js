@@ -7,7 +7,8 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+// import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import AddIcon from "@mui/icons-material/Add";
 
 import Chip from "@mui/material/Chip";
 // import Stack from "@mui/material/Stack";
@@ -73,12 +74,19 @@ function UserListContent() {
           <Container maxWidth="lg" sx={{ mt: 8, mb: 6 }}>
             <Grid container spacing={3}>
               <Grid item sm={12}>
-                <Button
+                {/* <Button
                   style={{ marginBottom: 10 }}
                   variant="contained"
                   href={"/admin/users"}
                 >
                   <ArrowBackIcon sx={{ mr: 1 }} /> Voltar
+                </Button> */}
+                <Button
+                  style={{ marginBottom: 10 }}
+                  variant="contained"
+                  href={"/admin/users/register"}
+                >
+                  <AddIcon sx={{ mr: 1 }} /> Novo
                 </Button>
                 <Paper
                   style={{
